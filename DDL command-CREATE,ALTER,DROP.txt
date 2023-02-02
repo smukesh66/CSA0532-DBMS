@@ -1,0 +1,56 @@
+mysql> create database sse;
+Query OK, 1 row affected (0.13 sec)
+
+mysql> use sse;
+Database changed
+mysql> create table faculty(facid int(20),facname varchar(20),facdept varchar(10),salary int(20));
+Query OK, 0 rows affected (0.16 sec)
+
+mysql> desc faculty;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| facid   | int(20)     | YES  |     | NULL    |       |
+| facname | varchar(20) | YES  |     | NULL    |       |
+| facdept | varchar(10) | YES  |     | NULL    |       |
+| salary  | int(20)     | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> show tables;
++---------------+
+| Tables_in_sse |
++---------------+
+| faculty       |
++---------------+
+1 row in set (0.00 sec)
+
+mysql> desc student;
+ERROR 1146 (42S02): Table 'sse.student' doesn't exist
+mysql> desc faculty;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| facid   | int(20)     | YES  |     | NULL    |       |
+| facname | varchar(20) | YES  |     | NULL    |       |
+| facdept | varchar(10) | YES  |     | NULL    |       |
+| salary  | int(20)     | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+4 rows in set (0.01 sec)
+
+mysql> insert into faculty values(1,"mukesh","it",100000);
+Query OK, 1 row affected (0.13 sec)
+
+mysql> insert into faculty values(2,"preethi","AIDS",100000);
+Query OK, 1 row affected (0.08 sec)
+
+mysql> select*from faculty;
++-------+---------+---------+--------+
+| facid | facname | facdept | salary |
++-------+---------+---------+--------+
+|     1 | mukesh  | it      | 100000 |
+|     2 | preethi | AIDS    | 100000 |
++-------+---------+---------+--------+
+2 rows in set (0.00 sec)
+
+mysql> desc faculty;
