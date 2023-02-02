@@ -1,0 +1,61 @@
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 6
+Server version: 5.5.62 MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use sse;
+Database changed
+mysql> select*from mentees:
+    -> select*from mentees;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ':
+select*from mentees' at line 1
+mysql> select*from mentees;
++-----------+---------+------+---------+------------+
+| regno     | name    | dep  | address | fathername |
++-----------+---------+------+---------+------------+
+| 192221049 | mukesh  | IT   | kall    | mukesh     |
+| 192221050 | preethi | IT   | kall    | preethi    |
++-----------+---------+------+---------+------------+
+2 rows in set (0.00 sec)
+
+mysql> update set dep="IT" where regno=192221049;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'set dep="IT" where regno=192221049' at line 1
+mysql> update mentees set dep="IT" where regno=192221049;
+Query OK, 0 rows affected (0.11 sec)
+Rows matched: 1  Changed: 0  Warnings: 0
+
+mysql> update mentees set dep="cse" where regno=192221049;
+Query OK, 1 row affected (0.11 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select*from mentees;
++-----------+---------+------+---------+------------+
+| regno     | name    | dep  | address | fathername |
++-----------+---------+------+---------+------------+
+| 192221049 | mukesh  | cse  | kall    | mukesh     |
+| 192221050 | preethi | IT   | kall    | preethi    |
++-----------+---------+------+---------+------------+
+2 rows in set (0.00 sec)
+
+mysql> delete fro mentees where dep="cse";
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'mentees where dep="cse"' at line 1
+mysql> delete from mentees where dep="cse";
+Query OK, 1 row affected (0.05 sec)
+
+mysql> select* from mentees;
++-----------+---------+------+---------+------------+
+| regno     | name    | dep  | address | fathername |
++-----------+---------+------+---------+------------+
+| 192221050 | preethi | IT   | kall    | preethi    |
++-----------+---------+------+---------+------------+
+1 row in set (0.00 sec)
+
+mysql>
