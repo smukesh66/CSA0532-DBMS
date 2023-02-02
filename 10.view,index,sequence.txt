@@ -1,0 +1,94 @@
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 12
+Server version: 5.5.62 MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use sse;
+Database changed
+mysql> select*from mentees;
++-----------+---------+------+---------+------------+-------+---------+
+| regno     | name    | dep  | address | fathername | marks | subject |
++-----------+---------+------+---------+------------+-------+---------+
+| 192221050 | preethi | IT   | kall    | preethi    |   100 | pom     |
+| 192221049 | mukesh  | IT   | kall    | mukesh     |    80 | phy     |
+| 192221048 | sayed   | IT   | kall    | sayed      |    88 | che     |
+| 192221047 | sa      | IT   | kall    | sa         |    85 | che     |
++-----------+---------+------+---------+------------+-------+---------+
+4 rows in set (0.00 sec)
+
+mysql> crate vieew marks_view as select subject,marks from mentees;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'crate vieew marks_view as select subject,marks from mentees' at line 1
+mysql> create vieew marks_view as select subject,marks from mentees;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'vieew marks_view as select subject,marks from mentees' at line 1
+mysql> create view marks_view as select subject,marks from mentees;
+Query OK, 0 rows affected (0.39 sec)
+
+mysql> select*from marks_view;
++---------+-------+
+| subject | marks |
++---------+-------+
+| pom     |   100 |
+| phy     |    80 |
+| che     |    88 |
+| che     |    85 |
++---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> create index subject on mentees(subject);
+Query OK, 0 rows affected (0.20 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> show index from mentees;
++---------+------------+----------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+
+| Table   | Non_unique | Key_name | Seq_in_index | Column_name | Collation | Cardinality | Sub_part | Packed | Null | Index_type | Comment | Index_comment |
++---------+------------+----------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+
+| mentees |          1 | subject  |            1 | subject     | A         |           4 |     NULL | NULL   | YES  | BTREE      |         |               |
++---------+------------+----------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+
+1 row in set (0.00 sec)
+
+mysql> create table per(pid int NOT AUTO_INCREMENT,name varchar(50),age int(10),PRIMARY KEY(pid));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AUTO_INCREMENT,name varchar(50),age int(10),PRIMARY KEY(pid))' at line 1
+mysql> create table per(pid int NOT NULL AUTO_INCREMENT,name varchar(50),age int(10),PRIMARY KEY(pid));
+Query OK, 0 rows affected (0.16 sec)
+
+mysql> decs per;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'decs per' at line 1
+mysql> desc per;
++-------+-------------+------+-----+---------+----------------+
+| Field | Type        | Null | Key | Default | Extra          |
++-------+-------------+------+-----+---------+----------------+
+| pid   | int(11)     | NO   | PRI | NULL    | auto_increment |
+| name  | varchar(50) | YES  |     | NULL    |                |
+| age   | int(10)     | YES  |     | NULL    |                |
++-------+-------------+------+-----+---------+----------------+
+3 rows in set (0.00 sec)
+
+mysql> alter table per AUTO_INCREMENT=100;
+Query OK, 0 rows affected (0.27 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> insert into per
+    ->
+    ->
+    -> insert into per(name,age) value ("mukesh",40);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'insert into per(name,age) value ("mukesh",40)' at line 4
+mysql> insert into per(name,age) value ("mukesh",40);
+Query OK, 1 row affected (0.13 sec)
+
+mysql> select*from per;
++-----+--------+------+
+| pid | name   | age  |
++-----+--------+------+
+| 100 | mukesh |   40 |
++-----+--------+------+
+1 row in set (0.00 sec)
+
+mysql>
